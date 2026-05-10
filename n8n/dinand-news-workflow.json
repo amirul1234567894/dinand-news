@@ -1,0 +1,193 @@
+{
+  "name": "Dinand News - Daily Auto Publisher",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "30 23 * * *"
+            }
+          ]
+        }
+      },
+      "id": "cron-trigger",
+      "name": "Daily 5 AM IST (23:30 UTC)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300],
+      "notes": "Runs at 5:00 AM IST daily (23:30 UTC previous day)"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "ingest_api_url",
+              "value": "https://news.autoflowa.in/api/ingest"
+            },
+            {
+              "name": "ingest_secret",
+              "value": "={{ $env.INGEST_API_SECRET }}"
+            }
+          ]
+        }
+      },
+      "id": "set-config",
+      "name": "Set Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Whitelist of trusted RSS sources\nconst sources = [\n  { name: 'PIB India',       url: 'https://www.pib.gov.in/RssMain.aspx?ModId=6&Lang=1&Regid=3', category: 'india' },\n  { name: 'India.gov.in',    url: 'https://www.india.gov.in/news_feeds/feed/rss', category: 'india' },\n  { name: 'Google Blog',     url: 'https://blog.google/rss/', category: 'tech' },\n  { name: 'OpenAI News',     url: 'https://openai.com/news/rss.xml', category: 'tech' },\n  { name: 'Microsoft News',  url: 'https://news.microsoft.com/feed/', category: 'tech' },\n  { name: 'AWS Blog',        url: 'https://aws.amazon.com/blogs/aws/feed/', category: 'tech' },\n  { name: 'Cloudflare Blog', url: 'https://blog.cloudflare.com/rss/', category: 'tech' },\n  { name: 'PR Newswire',     url: 'https://www.prnewswire.com/rss/news-releases-list.rss', category: 'business' },\n  { name: 'GlobeNewswire',   url: 'https://www.globenewswire.com/RssFeed/subjects/news', category: 'business' }\n];\n\nreturn sources.map(s => ({ json: s }));"
+      },
+      "id": "source-list",
+      "name": "Source Whitelist",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "id": "fetch-rss",
+      "name": "Fetch RSS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [900, 300],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse XML and extract last 3 items per source\nconst Parser = require('rss-parser');\nconst parser = new Parser({ timeout: 15000 });\n\nconst sourceMeta = $('Source Whitelist').item.json;\nconst rawXml = $input.item.json.data || $input.item.json.body || '';\n\nif (!rawXml || typeof rawXml !== 'string') {\n  return [];\n}\n\ntry {\n  const feed = await parser.parseString(rawXml);\n  const items = (feed.items || []).slice(0, 3); // Top 3 latest per source\n  return items.map(item => ({\n    json: {\n      source_name: sourceMeta.name,\n      category_slug: sourceMeta.category,\n      source_url: item.link,\n      source_published_at: item.isoDate || item.pubDate,\n      title: item.title,\n      raw_content: (item.contentSnippet || item.content || item.summary || item.title || '').slice(0, 4000)\n    }\n  }));\n} catch (e) {\n  return [{ json: { error: e.message, source: sourceMeta.name } }];\n}"
+      },
+      "id": "parse-rss",
+      "name": "Parse RSS Items",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.raw_content }}",
+              "rightValue": 50,
+              "operator": {
+                "type": "string",
+                "operation": "longerEqual"
+              }
+            },
+            {
+              "leftValue": "={{ $json.source_url }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "filter-valid",
+      "name": "Filter Valid Items",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [1340, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Set Config').first().json.ingest_api_url }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Set Config').first().json.ingest_secret }}"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"source_url\": \"{{ $json.source_url }}\",\n  \"source_name\": \"{{ $json.source_name }}\",\n  \"source_published_at\": \"{{ $json.source_published_at }}\",\n  \"category_slug\": \"{{ $json.category_slug }}\",\n  \"facts\": \"{{ $json.raw_content.replace(/\"/g, '\\\\\"').replace(/\\n/g, ' ') }}\",\n  \"is_breaking\": false\n}",
+        "options": {
+          "timeout": 120000,
+          "response": {
+            "response": {
+              "fullResponse": false,
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "post-ingest",
+      "name": "Post to Dinand Ingest API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1560, 240],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Aggregate results for the daily report\nconst items = $input.all();\nconst summary = {\n  total: items.length,\n  published: items.filter(i => i.json?.status === 'published').length,\n  duplicates: items.filter(i => i.json?.status === 'duplicate').length,\n  failed: items.filter(i => i.json?.error).length,\n  details: items.map(i => ({\n    slug: i.json?.slug,\n    status: i.json?.status,\n    error: i.json?.error\n  }))\n};\nreturn [{ json: summary }];"
+      },
+      "id": "aggregate",
+      "name": "Aggregate Results",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1780, 240]
+    }
+  ],
+  "connections": {
+    "Daily 5 AM IST (23:30 UTC)": {
+      "main": [[{ "node": "Set Config", "type": "main", "index": 0 }]]
+    },
+    "Set Config": {
+      "main": [[{ "node": "Source Whitelist", "type": "main", "index": 0 }]]
+    },
+    "Source Whitelist": {
+      "main": [[{ "node": "Fetch RSS", "type": "main", "index": 0 }]]
+    },
+    "Fetch RSS": {
+      "main": [[{ "node": "Parse RSS Items", "type": "main", "index": 0 }]]
+    },
+    "Parse RSS Items": {
+      "main": [[{ "node": "Filter Valid Items", "type": "main", "index": 0 }]]
+    },
+    "Filter Valid Items": {
+      "main": [
+        [{ "node": "Post to Dinand Ingest API", "type": "main", "index": 0 }],
+        []
+      ]
+    },
+    "Post to Dinand Ingest API": {
+      "main": [[{ "node": "Aggregate Results", "type": "main", "index": 0 }]]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Kolkata"
+  },
+  "tags": [
+    { "name": "dinand-news" },
+    { "name": "production" }
+  ]
+}

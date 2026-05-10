@@ -1,0 +1,74 @@
+{
+  "site": {
+    "name": "दिनांद न्यूज",
+    "tagline": "भारताचे दैनंदिन AI-चालित वृत्त"
+  },
+  "nav": {
+    "home": "मुख्यपृष्ठ",
+    "breaking": "ब्रेकिंग",
+    "trending": "ट्रेंडिंग",
+    "latest": "ताज्या",
+    "india": "भारत",
+    "tech": "टेक",
+    "business": "व्यवसाय",
+    "startup": "स्टार्टअप",
+    "auto": "ऑटो",
+    "sports": "क्रीडा",
+    "entertainment": "मनोरंजन",
+    "search": "शोधा",
+    "menu": "मेनू",
+    "close": "बंद करा"
+  },
+  "home": {
+    "breaking_now": "आत्ताची ब्रेकिंग",
+    "trending_today": "आजचे ट्रेंडिंग",
+    "latest_updates": "ताज्या अपडेट्स",
+    "view_all": "सर्व पहा",
+    "by_category": "वर्गानुसार"
+  },
+  "article": {
+    "key_highlights": "मुख्य मुद्दे",
+    "what_happened": "काय घडले",
+    "why_it_matters": "महत्त्व का",
+    "future_impact": "पुढे काय",
+    "source": "स्रोत",
+    "read_source": "मूळ घोषणा वाचा",
+    "published": "प्रकाशित",
+    "min_read": "मिनिटांचे वाचन",
+    "share": "शेअर करा",
+    "related": "संबंधित बातम्या",
+    "ai_disclosure": "हा लेख दिनांद न्यूजच्या संपादकीय AI द्वारे सार्वजनिकपणे उपलब्ध अधिकृत स्रोतांच्या आधारे तयार केला गेला आहे."
+  },
+  "search": {
+    "title": "शोधा",
+    "placeholder": "बातम्या, विषय, कंपन्या शोधा…",
+    "results_for": "निकाल",
+    "no_results": "कोणतेही निकाल नाहीत.",
+    "search_button": "शोधा"
+  },
+  "footer": {
+    "about": "आमच्याबद्दल",
+    "contact": "संपर्क",
+    "privacy": "गोपनीयता धोरण",
+    "terms": "वापराच्या अटी",
+    "disclaimer": "अस्वीकरण",
+    "editorial_policy": "संपादकीय धोरण",
+    "fact_check": "तथ्य तपासणी धोरण",
+    "dmca": "DMCA",
+    "rights": "सर्व हक्क राखीव.",
+    "made_in_india": "भारतात बनवले"
+  },
+  "cookie": {
+    "message": "तुमचा अनुभव सुधारण्यासाठी आम्ही कुकीज वापरतो.",
+    "accept": "स्वीकारा",
+    "decline": "नाकारा",
+    "learn_more": "अधिक जाणून घ्या"
+  },
+  "errors": {
+    "not_found": "पृष्ठ सापडले नाही",
+    "not_found_description": "तुम्ही शोधत असलेले पृष्ठ अस्तित्वात नाही.",
+    "go_home": "मुख्यपृष्ठावर जा",
+    "something_wrong": "काहीतरी चूक झाली"
+  },
+  "language": "भाषा"
+}

@@ -1,0 +1,74 @@
+{
+  "site": {
+    "name": "Dinand News",
+    "tagline": "India's Daily AI-Powered News Brief"
+  },
+  "nav": {
+    "home": "Home",
+    "breaking": "Breaking",
+    "trending": "Trending",
+    "latest": "Latest",
+    "india": "India",
+    "tech": "Tech",
+    "business": "Business",
+    "startup": "Startup",
+    "auto": "Auto",
+    "sports": "Sports",
+    "entertainment": "Entertainment",
+    "search": "Search",
+    "menu": "Menu",
+    "close": "Close"
+  },
+  "home": {
+    "breaking_now": "Breaking Now",
+    "trending_today": "Trending Today",
+    "latest_updates": "Latest Updates",
+    "view_all": "View all",
+    "by_category": "Browse by Category"
+  },
+  "article": {
+    "key_highlights": "Key Highlights",
+    "what_happened": "What Happened",
+    "why_it_matters": "Why It Matters",
+    "future_impact": "What Comes Next",
+    "source": "Source",
+    "read_source": "Read original announcement",
+    "published": "Published",
+    "min_read": "min read",
+    "share": "Share",
+    "related": "Related Stories",
+    "ai_disclosure": "This article was prepared by Dinand News editorial AI based on publicly available official sources. All facts have been verified against the original source listed below."
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Search news, topics, companies…",
+    "results_for": "Results for",
+    "no_results": "No results found. Try different keywords.",
+    "search_button": "Search"
+  },
+  "footer": {
+    "about": "About",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "disclaimer": "Disclaimer",
+    "editorial_policy": "Editorial Policy",
+    "fact_check": "Fact Check Policy",
+    "dmca": "DMCA",
+    "rights": "All rights reserved.",
+    "made_in_india": "Made in India"
+  },
+  "cookie": {
+    "message": "We use cookies to improve your experience and serve relevant ads. By continuing, you agree to our cookie policy.",
+    "accept": "Accept",
+    "decline": "Decline",
+    "learn_more": "Learn more"
+  },
+  "errors": {
+    "not_found": "Page Not Found",
+    "not_found_description": "The page you're looking for doesn't exist or has been moved.",
+    "go_home": "Go to Homepage",
+    "something_wrong": "Something went wrong"
+  },
+  "language": "Language"
+}

@@ -1,0 +1,74 @@
+{
+  "site": {
+    "name": "दिनांद न्यूज़",
+    "tagline": "भारत का दैनिक AI-संचालित समाचार"
+  },
+  "nav": {
+    "home": "होम",
+    "breaking": "ब्रेकिंग",
+    "trending": "ट्रेंडिंग",
+    "latest": "ताज़ा",
+    "india": "भारत",
+    "tech": "टेक",
+    "business": "बिज़नेस",
+    "startup": "स्टार्टअप",
+    "auto": "ऑटो",
+    "sports": "खेल",
+    "entertainment": "मनोरंजन",
+    "search": "खोजें",
+    "menu": "मेन्यू",
+    "close": "बंद करें"
+  },
+  "home": {
+    "breaking_now": "अभी की ब्रेकिंग",
+    "trending_today": "आज ट्रेंडिंग",
+    "latest_updates": "ताज़ा अपडेट",
+    "view_all": "सभी देखें",
+    "by_category": "श्रेणी के अनुसार"
+  },
+  "article": {
+    "key_highlights": "मुख्य बातें",
+    "what_happened": "क्या हुआ",
+    "why_it_matters": "क्यों मायने रखता है",
+    "future_impact": "आगे क्या",
+    "source": "स्रोत",
+    "read_source": "मूल घोषणा पढ़ें",
+    "published": "प्रकाशित",
+    "min_read": "मिनट पढ़ें",
+    "share": "साझा करें",
+    "related": "संबंधित ख़बरें",
+    "ai_disclosure": "यह लेख दिनांद न्यूज़ की संपादकीय AI द्वारा सार्वजनिक रूप से उपलब्ध आधिकारिक स्रोतों के आधार पर तैयार किया गया है।"
+  },
+  "search": {
+    "title": "खोजें",
+    "placeholder": "समाचार, विषय, कंपनियाँ खोजें…",
+    "results_for": "परिणाम",
+    "no_results": "कोई परिणाम नहीं मिला।",
+    "search_button": "खोजें"
+  },
+  "footer": {
+    "about": "हमारे बारे में",
+    "contact": "संपर्क",
+    "privacy": "गोपनीयता नीति",
+    "terms": "उपयोग की शर्तें",
+    "disclaimer": "अस्वीकरण",
+    "editorial_policy": "संपादकीय नीति",
+    "fact_check": "फ़ैक्ट चेक नीति",
+    "dmca": "DMCA",
+    "rights": "सर्वाधिकार सुरक्षित।",
+    "made_in_india": "भारत में निर्मित"
+  },
+  "cookie": {
+    "message": "हम आपके अनुभव को बेहतर बनाने और प्रासंगिक विज्ञापन दिखाने के लिए कुकीज़ का उपयोग करते हैं।",
+    "accept": "स्वीकार करें",
+    "decline": "अस्वीकार करें",
+    "learn_more": "और जानें"
+  },
+  "errors": {
+    "not_found": "पेज नहीं मिला",
+    "not_found_description": "आप जिस पेज की तलाश कर रहे हैं वह मौजूद नहीं है।",
+    "go_home": "होम पेज पर जाएं",
+    "something_wrong": "कुछ गड़बड़ हुई"
+  },
+  "language": "भाषा"
+}

@@ -1,0 +1,74 @@
+{
+  "site": {
+    "name": "দিনান্দ নিউজ",
+    "tagline": "ভারতের দৈনিক AI-চালিত সংবাদ"
+  },
+  "nav": {
+    "home": "হোম",
+    "breaking": "ব্রেকিং",
+    "trending": "ট্রেন্ডিং",
+    "latest": "সর্বশেষ",
+    "india": "ভারত",
+    "tech": "প্রযুক্তি",
+    "business": "ব্যবসা",
+    "startup": "স্টার্টআপ",
+    "auto": "অটো",
+    "sports": "খেলাধুলা",
+    "entertainment": "বিনোদন",
+    "search": "খুঁজুন",
+    "menu": "মেনু",
+    "close": "বন্ধ"
+  },
+  "home": {
+    "breaking_now": "এখনই ব্রেকিং",
+    "trending_today": "আজকের ট্রেন্ডিং",
+    "latest_updates": "সর্বশেষ আপডেট",
+    "view_all": "সব দেখুন",
+    "by_category": "বিভাগ অনুযায়ী"
+  },
+  "article": {
+    "key_highlights": "মূল পয়েন্ট",
+    "what_happened": "কী ঘটেছে",
+    "why_it_matters": "কেন গুরুত্বপূর্ণ",
+    "future_impact": "এরপর কী",
+    "source": "সূত্র",
+    "read_source": "মূল ঘোষণা পড়ুন",
+    "published": "প্রকাশিত",
+    "min_read": "মিনিটের পঠন",
+    "share": "শেয়ার করুন",
+    "related": "সম্পর্কিত খবর",
+    "ai_disclosure": "এই নিবন্ধটি দিনান্দ নিউজের সম্পাদকীয় AI দ্বারা সর্বজনীন আধিকারিক সূত্রের ভিত্তিতে প্রস্তুত করা হয়েছে।"
+  },
+  "search": {
+    "title": "খুঁজুন",
+    "placeholder": "খবর, বিষয়, কোম্পানি খুঁজুন…",
+    "results_for": "ফলাফল",
+    "no_results": "কোনো ফলাফল পাওয়া যায়নি।",
+    "search_button": "খুঁজুন"
+  },
+  "footer": {
+    "about": "আমাদের সম্পর্কে",
+    "contact": "যোগাযোগ",
+    "privacy": "গোপনীয়তা নীতি",
+    "terms": "ব্যবহারের শর্তাবলী",
+    "disclaimer": "দাবিত্যাগ",
+    "editorial_policy": "সম্পাদকীয় নীতি",
+    "fact_check": "ফ্যাক্ট চেক নীতি",
+    "dmca": "DMCA",
+    "rights": "সর্বস্বত্ব সংরক্ষিত।",
+    "made_in_india": "ভারতে তৈরি"
+  },
+  "cookie": {
+    "message": "আপনার অভিজ্ঞতা উন্নত করতে আমরা কুকিজ ব্যবহার করি।",
+    "accept": "গ্রহণ করুন",
+    "decline": "প্রত্যাখ্যান",
+    "learn_more": "আরও জানুন"
+  },
+  "errors": {
+    "not_found": "পেজ পাওয়া যায়নি",
+    "not_found_description": "আপনি যে পেজটি খুঁজছেন তা নেই।",
+    "go_home": "হোমপেজে যান",
+    "something_wrong": "কিছু ভুল হয়েছে"
+  },
+  "language": "ভাষা"
+}
