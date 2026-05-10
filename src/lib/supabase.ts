@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿import { createBrowserClient, createServerClient } from '@supabase/ssr';
-=======
 import { createBrowserClient, createServerClient } from '@supabase/ssr';
->>>>>>> a545130e6e5841d6c140e642919c5c18225a1081
 import { createClient } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
 
@@ -21,14 +17,10 @@ export async function createServerSupabase() {
       getAll() {
         return cookieStore.getAll();
       },
-<<<<<<< HEAD
-      setAll(cookiesToSet: Array<{ name: string; value: string; options?: object }>) {
-=======
-      setAll(cookiesToSet: { name: string; value: string; options?: Record<string, unknown> }[]) {
->>>>>>> a545130e6e5841d6c140e642919c5c18225a1081
+      setAll(cookiesToSet) {
         try {
           cookiesToSet.forEach(({ name, value, options }) =>
-            cookieStore.set(name, value, options as any)
+            cookieStore.set(name, value, options)
           );
         } catch {}
       },
