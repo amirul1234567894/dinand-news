@@ -3,6 +3,8 @@ import { z } from 'zod';
 import slugify from 'slugify';
 import { createAdminSupabase } from '@/lib/supabase';
 import { generateEnglishArticle, translateArticle, estimatePlagiarismScore } from '@/lib/groq';
+
+export const dynamic = 'force-dynamic';
 import { calculateReadingTime, generatePlaceholderCover } from '@/lib/utils';
 import { LOCALES } from '@/types';
 

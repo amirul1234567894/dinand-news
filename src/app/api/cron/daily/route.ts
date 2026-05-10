@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Parser from 'rss-parser';
 
+export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 export const maxDuration = 300; // 5 min for full pipeline
 
