@@ -27,19 +27,8 @@ export function buildCanonicalUrl(locale: string, path = ''): string {
 }
 
 export function generatePlaceholderCover(slug: string, category: string): string {
-  // Use a deterministic Unsplash collection or a generated SVG placeholder
-  const seed = slug.charCodeAt(0) + slug.length;
-  const collections: Record<string, string> = {
-    tech: '2243781',
-    business: '3330448',
-    india: '1080368',
-    sports: '4458655',
-    entertainment: '317099',
-    auto: '1118895',
-    startup: '317099',
-    breaking: '1080368',
-    trending: '317099',
-  };
-  const collectionId = collections[category] || '1080368';
-  return `https://source.unsplash.com/collection/${collectionId}/1200x630?sig=${seed}`;
+  // Use picsum.photos - always works, no auth needed
+  const seed = slug.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const id = (seed % 1000) + 1;
+  return `https://picsum.photos/seed/${id}/1200/630`;
 }
