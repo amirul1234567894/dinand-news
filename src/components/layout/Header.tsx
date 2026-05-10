@@ -42,14 +42,16 @@ export default function Header({ locale }: { locale: Locale }) {
       {/* Main bar with logo */}
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
         <Link href={`/${locale}`} className="block group" aria-label="Dinand News home">
-          <Image
-            src="/logo.png"
-            alt="Dinand News - India's Daily News Brief"
-            width={420}
-            height={120}
-            priority
-            className="h-12 md:h-14 w-auto group-hover:opacity-90 transition-opacity"
-          />
+          <div className="bg-ink-900 px-3 py-1.5 rounded">
+            <Image
+              src="/logo.png"
+              alt="Dinand News - India's Daily News Brief"
+              width={420}
+              height={120}
+              priority
+              className="h-10 md:h-12 w-auto group-hover:opacity-90 transition-opacity"
+            />
+          </div>
         </Link>
 
         <div className="hidden md:flex items-center gap-2">
