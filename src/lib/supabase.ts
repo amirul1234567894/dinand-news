@@ -1,4 +1,4 @@
-import { createBrowserClient, createServerClient } from '@supabase/ssr';
+﻿import { createBrowserClient, createServerClient } from '@supabase/ssr';
 import { createClient } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
 
@@ -14,15 +14,9 @@ export async function createServerSupabase() {
   const cookieStore = await cookies();
   return createServerClient(supabaseUrl, supabaseAnonKey, {
     cookies: {
-      getAll() {
-        return cookieStore.getAll();
-      },
+      getAll() { return cookieStore.getAll(); },
       setAll(cookiesToSet: any[]) {
-        try {
-          cookiesToSet.forEach(({ name, value, options }: any) =>
-            cookieStore.set(name, value, options)
-          );
-        } catch {}
+        try { cookiesToSet.forEach(({ name, value, options }: any) => cookieStore.set(name, value, options)); } catch {}
       },
     },
   });
