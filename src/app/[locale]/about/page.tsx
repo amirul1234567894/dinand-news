@@ -1,15 +1,13 @@
+export const dynamic = 'force-dynamic';
+
 import { setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { routing } from '@/i18n/routing';
 
 export const metadata: Metadata = {
   title: 'About Dinand News',
   description: 'Dinand News is an independent Indian news platform that publishes only verified, official information from government and corporate press releases.',
 };
 
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
 
 export default async function AboutPage({
   params,

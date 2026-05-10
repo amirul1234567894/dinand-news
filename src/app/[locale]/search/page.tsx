@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Search } from 'lucide-react';
 import { searchArticles } from '@/lib/articles';
