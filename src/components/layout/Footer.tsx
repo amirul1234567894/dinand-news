@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import type { Locale } from '@/types';
 
@@ -12,9 +13,15 @@ export default function Footer({ locale }: { locale: Locale }) {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <h3 className="font-display text-2xl font-bold text-ink-50 mb-2">
-              Dinand <span className="text-saffron-400">News</span>
-            </h3>
+            <Link href={`/${locale}`} className="inline-block mb-3">
+              <Image
+                src="/logo-light.png"
+                alt="Dinand News"
+                width={280}
+                height={80}
+                className="h-12 w-auto brightness-110"
+              />
+            </Link>
             <p className="text-sm text-ink-400 leading-relaxed">
               Independent, transparent daily news for India — sourced only from official press releases and verified channels.
             </p>

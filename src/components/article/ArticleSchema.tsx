@@ -29,8 +29,8 @@ export default function ArticleSchema({
       logo: {
         '@type': 'ImageObject',
         url: `${baseUrl}/logo.png`,
-        width: 600,
-        height: 60,
+        width: 841,
+        height: 240,
       },
     },
     mainEntityOfPage: {

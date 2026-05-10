@@ -4,7 +4,7 @@ import './globals.css';
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://news.autoflowa.in'),
   title: {
-    default: 'Dinand News - India\'s Daily AI News Brief',
+    default: "Dinand News - India's Daily AI News Brief",
     template: '%s | Dinand News',
   },
   description: 'Trusted, transparent daily news from India and the world — built on official sources only.',
@@ -17,6 +17,40 @@ export const metadata: Metadata = {
     email: false,
     address: false,
     telephone: false,
+  },
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+  },
+  manifest: '/site.webmanifest',
+  openGraph: {
+    type: 'website',
+    siteName: 'Dinand News',
+    title: "Dinand News - India's Daily AI News Brief",
+    description: 'Trusted, transparent daily news from India and the world — built on official sources only.',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Dinand News',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Dinand News - India's Daily AI News Brief",
+    description: 'Trusted, transparent daily news from India and the world.',
+    images: ['/og-image.png'],
   },
   robots: {
     index: true,

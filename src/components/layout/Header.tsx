@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Menu, X, Search } from 'lucide-react';
@@ -23,7 +24,7 @@ export default function Header({ locale }: { locale: Locale }) {
 
   return (
     <header className="sticky top-0 z-40 bg-ink-50/95 backdrop-blur border-b border-ink-200">
-      {/* Top strip */}
+      {/* Top strip - date + language switcher */}
       <div className="bg-ink-900 text-ink-100 text-xs">
         <div className="max-w-7xl mx-auto px-4 py-1.5 flex justify-between items-center">
           <span className="font-medium tracking-wide">
@@ -38,20 +39,17 @@ export default function Header({ locale }: { locale: Locale }) {
         </div>
       </div>
 
-      {/* Main bar */}
-      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
-        <Link href={`/${locale}`} className="group flex items-center gap-3">
-          <div className="w-10 h-10 bg-saffron-700 flex items-center justify-center text-ink-50 font-display font-bold text-xl rounded-sm group-hover:bg-saffron-800 transition-colors">
-            द
-          </div>
-          <div>
-            <h1 className="font-display text-2xl font-bold leading-none text-ink-900">
-              Dinand <span className="text-saffron-700">News</span>
-            </h1>
-            <p className="text-[11px] text-ink-500 tracking-wider uppercase mt-0.5">
-              India's AI News Brief
-            </p>
-          </div>
+      {/* Main bar with logo */}
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+        <Link href={`/${locale}`} className="block group" aria-label="Dinand News home">
+          <Image
+            src="/logo.png"
+            alt="Dinand News - India's Daily News Brief"
+            width={420}
+            height={120}
+            priority
+            className="h-12 md:h-14 w-auto group-hover:opacity-90 transition-opacity"
+          />
         </Link>
 
         <div className="hidden md:flex items-center gap-2">
