@@ -120,14 +120,27 @@ export async function searchArticles(query: string, locale: Locale, limit = 20):
 
 export async function incrementViewCount(articleId: string): Promise<void> {
   const supabase = createAdminSupabase();
-  await supabase.rpc('increment', { article_id: articleId }).catch(() => {
-    // Fallback: direct update
-    supabase
-      .from('articles')
-      .update({ view_count: 1 })
-      .eq('id', articleId)
-      .then(() => {});
-  });
+  try {
+    // Try the RPC function first (if you've defined one in Supabase)
+    const { error } = await supabase.rpc('increment_article_views', { article_id: articleId });
+    if (error) throw error;
+  } catch {
+    // Fallback: fetch current count and increment manually
+    try {
+      const { data } = await supabase
+        .from('articles')
+        .select('view_count')
+        .eq('id', articleId)
+        .single();
+      const currentCount = data?.view_count ?? 0;
+      await supabase
+        .from('articles')
+        .update({ view_count: currentCount + 1 })
+        .eq('id', articleId);
+    } catch {
+      // Silently fail - view counting is non-critical
+    }
+  }
 }
 
 export async function fetchAllPublishedSlugs(): Promise<Array<{ slug: string; updated_at: string }>> {
