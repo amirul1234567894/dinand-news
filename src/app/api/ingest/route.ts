@@ -5,7 +5,7 @@ import { createAdminSupabase } from '@/lib/supabase';
 import { generateEnglishArticle, translateArticle, estimatePlagiarismScore } from '@/lib/groq';
 
 export const dynamic = 'force-dynamic';
-import { calculateReadingTime, generatePlaceholderCover } from '@/lib/utils';
+import { calculateReadingTime, generatePlaceholderCover, fetchRelatedImage } from '@/lib/utils';
 import { LOCALES } from '@/types';
 
 export const runtime = 'nodejs';
@@ -141,8 +141,8 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // 9. Cover image
-  const coverImage = payload.cover_image_url || generatePlaceholderCover(finalSlug, payload.category_slug);
+  // 9. Cover image — Pexels related image or picsum fallback
+  const coverImage = payload.cover_image_url || await fetchRelatedImage(englishArticle.title, payload.category_slug);
 
   // 10. Insert article master record
   const { data: article, error: articleError } = await supabase

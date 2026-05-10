@@ -27,8 +27,38 @@ export function buildCanonicalUrl(locale: string, path = ''): string {
 }
 
 export function generatePlaceholderCover(slug: string, category: string): string {
-  // Use picsum.photos - always works, no auth needed
   const seed = slug.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
   const id = (seed % 1000) + 1;
   return `https://picsum.photos/seed/${id}/1200/630`;
+}
+
+export async function fetchRelatedImage(title: string, category: string): Promise<string> {
+  const apiKey = process.env.PEXELS_API_KEY;
+  if (!apiKey) return generatePlaceholderCover(title, category);
+
+  const keywords: Record<string, string> = {
+    tech: 'technology computer',
+    business: 'business finance office',
+    india: 'india government',
+    startup: 'startup entrepreneur',
+    sports: 'sports stadium',
+    entertainment: 'entertainment media',
+    auto: 'automobile car',
+    breaking: 'news breaking',
+    trending: 'viral trending',
+  };
+
+  const query = encodeURIComponent(`${title} ${keywords[category] || category}`);
+
+  try {
+    const res = await fetch(`https://api.pexels.com/v1/search?query=${query}&per_page=1&orientation=landscape`, {
+      headers: { Authorization: apiKey },
+    });
+    const data = await res.json();
+    const photo = data?.photos?.[0];
+    if (photo) return photo.src.large2x || photo.src.original;
+  } catch {
+    // fallback to picsum
+  }
+  return generatePlaceholderCover(title, category);
 }
