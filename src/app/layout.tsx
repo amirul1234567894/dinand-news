@@ -52,6 +52,9 @@ export const metadata: Metadata = {
     description: 'Trusted, transparent daily news from India and the world.',
     images: ['/og-image.png'],
   },
+  verification: {
+    google: 'hcKCZVNfKh3e8YxKt2GwJcZP42kfCHw0z_l9WaKdt-A',
+  },
   robots: {
     index: true,
     follow: true,
