@@ -2,6 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Inter, Source_Serif_4 } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import { routing } from '@/i18n/routing';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -60,6 +61,7 @@ export default async function LocaleLayout({
           <Footer locale={locale as Locale} />
           <CookieBanner />
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
