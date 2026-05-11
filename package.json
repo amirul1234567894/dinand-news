@@ -13,16 +13,17 @@
   "dependencies": {
     "@supabase/ssr": "^0.5.2",
     "@supabase/supabase-js": "^2.46.1",
+    "@vercel/analytics": "^2.0.1",
+    "date-fns": "^4.1.0",
     "groq-sdk": "^0.9.0",
+    "lucide-react": "^0.460.0",
     "next": "15.0.7",
     "next-intl": "^3.25.1",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "rss-parser": "^3.13.0",
     "slugify": "^1.6.6",
-    "zod": "^3.23.8",
-    "lucide-react": "^0.460.0",
-    "date-fns": "^4.1.0"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^22.9.0",
