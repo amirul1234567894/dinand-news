@@ -20,6 +20,8 @@ const sourceSerif = Source_Serif_4({
   display: 'swap',
 });
 
+const ADSENSE_CLIENT_ID = 'ca-pub-6510553016832156';
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
@@ -43,13 +45,13 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${inter.variable} ${sourceSerif.variable}`}>
       <head>
-        {process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID && (
-          <script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID}`}
-            crossOrigin="anonymous"
-          />
-        )}
+        {/* Google AdSense verification + ads */}
+        <meta name="google-adsense-account" content={ADSENSE_CLIENT_ID} />
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`}
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="min-h-screen flex flex-col bg-ink-50 text-ink-900 antialiased">
         <NextIntlClientProvider messages={messages}>
